@@ -99,7 +99,7 @@ st.sidebar.write(" ")
 st.sidebar.write(" ")
 st.sidebar.write(" ")
 st.sidebar.write("【プロフィール】")
-st.sidebar.write("バナナ高等学校 工業科、総合ものづくりコースの２年生１７歳。\
+st.sidebar.write("バナナ高等学校 工業科、総合ものづくりコースの２年生１７歳です。\
                  「つくる」という名前は、ものづくりが好きなパパが付けてくれました。\
                  好きな食べ物は熟す前のバナナ！！微妙に青臭いのがハオい。そして誕生日は８月７日…バナナの日！(なんてこったぁ～） \
                  パパに似て、ものづくりが好きで、特に木材加工や電子工作が大好き。\
@@ -129,15 +129,21 @@ if img_file is not None:
             #st.write(str(round(result[1]*100, 2)) + "%の確率で" + result[0] + "だよね？")
             st.subheader("これって、"+result[0]+"？だよねぇ")
             st.write(str(round(100-result[1]*100,2)) + "％まちがってるかも…てへぺろ")            
-            st.subheader("下のボタンで説明をはじめるよ！")
+            
         # ---------- ボタン ----------
         #st.subheader("下のボタンで説明をはじめるよ")
 
         
-        if st.button("新しいタブで説明を見る"):
+        #if st.button("新しいタブで説明を見る"):
             #st.write("Good morinig!")
-            webbrowser.open_new_tab('https://hibiki-press.tech/python/webbrowser_module/1884')
+        #    webbrowser.open_new_tab('https://hibiki-press.tech/python/webbrowser_module/1884')
         
+        url = "https://www.streamlit.io"
+        st.subheader("これの説明をしますか？ [はい](%s)" % url)
+        st.write("（新しいタブが開かれます。）")
+        #st.markdown("check out this [link](%s)" % url)
+
+
 
         # 円グラフの表示
         #pie_labels = [result[0] for result in results[:n_top]]
