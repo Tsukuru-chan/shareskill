@@ -139,7 +139,7 @@ if img_file is not None:
         #    webbrowser.open_new_tab('https://hibiki-press.tech/python/webbrowser_module/1884')
         
         url = "https://www.streamlit.io"
-        st.subheader("これの説明をしますか？ [はい](%s)" % url)
+        st.subheader(result[0]+"の説明をしますか？ [はい](%s)" % url)
         st.write("（新しいタブが開かれます。）")
         #st.markdown("check out this [link](%s)" % url)
 
