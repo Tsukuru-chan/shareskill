@@ -89,12 +89,11 @@ st.sidebar.write("")
 
 global img_source
 img_source = st.sidebar.radio("画像のアップロード方法を選んでね。",
-                              ("画像ファイルをアップロード", "カメラ撮影でアップロード"))
-if img_source == "画像ファイルをアップロード":
-    img_file = st.sidebar.file_uploader("画像を選択してね。下の枠内に画像ファイルをドラッグ＆ドロップすることもできるよ。", type=["png", "jpg","jpeg"])
-elif img_source == "カメラ撮影でアップロード":
+                              ("カメラ撮影でアップロード","画像ファイルをアップロード"))
+if img_source == "カメラ撮影でアップロード":
     img_file = st.camera_input("カメラ撮影でアップロード")
-
+elif img_source == "カメラ撮影でアップロード":
+    img_file = st.sidebar.file_uploader("画像を選択してね。下の枠内に画像ファイルをドラッグ＆ドロップすることもできるよ。", type=["png", "jpg","jpeg"])
 
 st.sidebar.write(" ")
 st.sidebar.write(" ")
