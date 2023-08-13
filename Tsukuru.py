@@ -139,7 +139,7 @@ if img_file is not None:
             #st.write("Good morinig!")
         #    webbrowser.open_new_tab('https://hibiki-press.tech/python/webbrowser_module/1884')
         
-        url = "https://katagamiedu-my.sharepoint.com/personal/katat00183_katagamiedu_onmicrosoft_com/_layouts/15/stream.aspx?id=%2Fpersonal%2Fkatat00183%5Fkatagamiedu%5Fonmicrosoft%5Fcom%2FDocuments%2FVideos%2F%E3%83%A9%E3%82%B8%E3%82%AA%E3%83%9A%E3%83%B3%E3%83%81%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%2Emp4&ga=1"
+        url = "https://1drv.ms/v/s!AjBDmTSYWyT8gUtAA6UJ-Fds41Kb?e=wrjXyw"
         st.subheader(result[0]+"の説明をしますか？ [はい](%s)" % url)
         st.write("（新しいタブが開かれます。）")
         #st.markdown("check out this [link](%s)" % url)
