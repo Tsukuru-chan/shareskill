@@ -91,7 +91,7 @@ global img_source
 img_source = st.sidebar.radio("画像のアップロード方法を選んでね。",
                               ("画像ファイルをアップロード","カメラ撮影でアップロード"))
 if img_source == "画像ファイルをアップロード":
-    img_file = st.sidebar.file_uploader("画像を選択してね。下の枠内に画像ファイルをドラッグ＆ドロップすることもできるよ。", type=["png", "jpg","jpeg"])
+    img_file = st.sidebar.file_uploader("下の枠内に画像ファイルをドラッグ＆ドロップするか、ボタンを押して画像ファイルを選択してね。", type=["png", "jpg","jpeg"])
 elif img_source == "カメラ撮影でアップロード":
     img_file = st.camera_input("カメラ撮影でアップロード")
    
@@ -139,7 +139,7 @@ if img_file is not None:
             #st.write("Good morinig!")
         #    webbrowser.open_new_tab('https://hibiki-press.tech/python/webbrowser_module/1884')
         
-        url = "https://1drv.ms/v/s!AjBDmTSYWyT8gUtAA6UJ-Fds41Kb?e=SWMKkk"
+        url = "https://tsukuru-chan.github.io/test/"
         st.subheader(result[0]+"の説明をしますか？ [はい](%s)" % url)
         st.write("（新しいタブが開かれます。）")
         #st.markdown("check out this [link](%s)" % url)
