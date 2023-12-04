@@ -1,11 +1,32 @@
+# ↓を参考にモデルを作ろう！！
+# https://sorabatake.jp/15199/
+# https://github.com/sorabatake/article_15199_golf  ←スクリプトはこちら
+
+
+# これはどう？
+# https://vaaaaaanquish.hatenablog.com/entry/2018/09/15/213253
+# https://shibayama-masaki.com/2022/03/11/pytorch-transfer-learning/
+# https://qiita.com/yulily/items/a98ef90fe6cbc7f268c0
+
+
 import torch
 from torchvision import models, transforms
 from PIL import Image
 
-net = models.resnet101(pretrained=True)  # 訓練済みのモデルを読み込み
-with open("imagenet_classes.txt") as f:  # ラベルの読み込み
-    classes = [line.strip() for line in f.readlines()]
 
+########### net = models.resnet101(pretrained=True)  # 訓練済みのモデルを読み込み
+net = models.resnet18(pretrained=True)  # 訓練済みのモデルを読み込み
+#net = torch.load('./Gijutsu.pth')
+#net.load_state_dict(torch.load('./Gijutsu.pth'))
+
+
+# https://take-tech-engineer.com/pytorch-model-save-load/
+#########################################################
+
+with open("imagenet_classes.txt") as f:  # ラベルの読み込み
+#with open('ScrewDriver.txt') as f:       # ラベルの読み込み
+    classes = [line.strip() for line in f.readlines()]
+    
 def predict(img):
     # 以下の設定はこちらを参考に設定: https://pytorch.org/hub/pytorch_vision_resnet/
     transform = transforms.Compose([
@@ -22,7 +43,7 @@ def predict(img):
     img = transform(img)
     x = torch.unsqueeze(img, 0)  # バッチ対応
 
-    # 予測
+    # 予測    
     net.eval()
     y = net(x)
 

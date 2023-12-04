@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from torchvision import models, transforms
 from model import predict #これは、model.pyのこと
+
 import webbrowser
 
 
