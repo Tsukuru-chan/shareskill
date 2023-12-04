@@ -7,7 +7,7 @@ with open("imagenet_classes.txt") as f:  # ラベルの読み込み
     classes = [line.strip() for line in f.readlines()]
 
 def predict(img):
-    # 
+    # 以下の設定はこちらを参考に設定: https://pytorch.org/hub/pytorch_vision_resnet/
     transform = transforms.Compose([
                                     transforms.Resize(256),
                                     transforms.CenterCrop(224),

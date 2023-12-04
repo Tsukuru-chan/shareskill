@@ -11,12 +11,17 @@ from model import predict #これは、model.pyのこと
 import webbrowser
 
 
+
+
+
+
+
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
 
 #st.title('つくるちゃん')
-
-st.sidebar.title("つくるのＷＥＢアプリ")
+#st.caption('ものづくりを学ぼう')
+st.sidebar.title("つくるのＡＩ-ＷＥＢアプリ")
 image = Image.open('TSUKURU.png')
 #st.image(image,width=150)
 st.sidebar.image(image,width=300)
@@ -84,5 +89,15 @@ if img_file is not None:
 
 
 
-    
+        # 円グラフの表示
+        #pie_labels = [result[0] for result in results[:n_top]]
+        #pie_labels.append("others")
+        #pie_probs = [result[1] for result in results[:n_top]]
+        #pie_probs.append(sum([result[1] for result in results[n_top:]]))
+        #fig, ax = plt.subplots()
+        #wedgeprops={"width":0.3, "edgecolor":"white"}
+        #textprops = {"fontsize":6}
+        #ax.pie(pie_probs, labels=pie_labels, counterclock=False, startangle=90,
+        #       textprops=textprops, autopct="%.2f", wedgeprops=wedgeprops)  # 円グラフ
+        #st.pyplot(fig)
 
