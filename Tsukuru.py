@@ -1,4 +1,7 @@
-import io
+# streamlit run filename.pyで起動する。
+# マニュアルはこちら　↓
+# https://docs.streamlit.io/
+
 import streamlit as st
 from PIL import Image
 import numpy as np
@@ -7,10 +10,66 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from torchvision import models, transforms
 from model import predict #これは、model.pyのこと
+
 import webbrowser
 
 
 
+
+
+
+
+# https://github.com/yukinaga/ai_webapp/tree/main
+# ---------- スライダー ----------
+#st.title("st.slider()")
+#x = st.slider("xの値")
+#st.write(str(x) + "の2乗は" + str(x**2))
+
+# ---------- ボタン ----------
+#st.title("st.button()")
+#if st.button("Morning?"):
+#    st.write("Good morinig!")
+#else:
+#    st.write("Helllo!")
+
+# ---------- テキスト入力 ----------
+#st.title("st.text_input()")
+#st.text_input("お住まいの国", key="country")
+#st.session_state.country  # keyでアクセス
+
+# ---------- チェックボックス ----------
+#st.title("st.checkbox()")
+#is_agree = st.checkbox("同意しますか？")
+#if is_agree:
+#    st.write("了解です！")
+#else:
+#    st.write("残念です！")
+
+# ---------- セレクトボックス ----------
+#st.title("st.selectbox()")
+#df_select = pd.DataFrame({
+#    "col1": [11, 12, 13, 14],
+#    "col2": [111, 112, 113, 114]
+#    })
+#selected = st.selectbox(
+#    "どの番号を選びますか？",
+#     df_select["col2"])
+#st.write("あなたは" + str(selected) + "番を選びました！")
+
+# ---------- サイドバー ----------
+#st.title("st.sidebar")
+
+#y = st.sidebar.slider("yの値")
+#st.write(str(y) + "の2倍は" + str(y*2))
+
+#df_side = pd.DataFrame({
+#    "animal": ["犬", "猫", "兎", "象", "蛙"],
+#    "color": ["赤", "青", "黄", "白", "黒"]
+#    })
+#selected_side = st.sidebar.selectbox(
+#    "どの動物を選びますか？",
+#     df_side["animal"])
+#st.write("あなたは" + str(selected_side) + "を選びました！")
 
 
 
@@ -20,7 +79,7 @@ st.set_option("deprecation.showfileUploaderEncoding", False)
 
 #st.title('つくるちゃん')
 #st.caption('ものづくりを学ぼう')
-st.sidebar.title("つくるのＡＩ-ＷＥＢアプリ")
+st.sidebar.title("つくるちゃんアプリ")
 image = Image.open('TSUKURU.png')
 #st.image(image,width=150)
 st.sidebar.image(image,width=300)
@@ -88,4 +147,24 @@ if img_file is not None:
 
 
 
+        # 円グラフの表示
+        #pie_labels = [result[0] for result in results[:n_top]]
+        #pie_labels.append("others")
+        #pie_probs = [result[1] for result in results[:n_top]]
+        #pie_probs.append(sum([result[1] for result in results[n_top:]]))
+        #fig, ax = plt.subplots()
+        #wedgeprops={"width":0.3, "edgecolor":"white"}
+        #textprops = {"fontsize":6}
+        #ax.pie(pie_probs, labels=pie_labels, counterclock=False, startangle=90,
+        #       textprops=textprops, autopct="%.2f", wedgeprops=wedgeprops)  # 円グラフ
+        #st.pyplot(fig)
 
+
+# StreamlitでWebアプリ開発！インストールからデプロイまで徹底解説
+# https://camp.trainocate.co.jp/magazine/streamlit-web/
+
+# Resnetを転移学習
+# http://pchun.work/resnet%E3%82%92fine-tuning%E3%81%97%E3%81%A6%E8%87%AA%E5%88%86%E3%81%8C%E7%94%A8%E6%84%8F%E3%81%97%E3%81%9F%E7%94%BB%E5%83%8F%E3%82%92%E5%AD%A6%E7%BF%92%E3%81%95%E3%81%9B%E3%82%8B/
+
+# Udemy？のオンライン講座の資料？
+# https://github.com/yukinaga/ai_webapp/blob/main/section_3/01_image_recognition.ipynb
