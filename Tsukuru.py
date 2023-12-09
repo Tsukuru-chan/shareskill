@@ -13,7 +13,7 @@ import webbrowser
 
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
-st.sidebar.title("つくるちゃんアプリ")
+st.sidebar.title("つくるちゃんＷＥＢ")
 image = Image.open('TSUKURU.png')
 #st.image(image,width=150)
 st.sidebar.image(image,width=300)
