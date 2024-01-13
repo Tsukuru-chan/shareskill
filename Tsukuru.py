@@ -1,101 +1,27 @@
-# streamlit run filename.pyで起動する。
-# マニュアルはこちら　↓
-# https://docs.streamlit.io/
-
+#import io
 import streamlit as st
 from PIL import Image
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from PIL import Image
-from torchvision import models, transforms
-from model import predict #これは、model.pyのこと
 
+
+from PIL import Image
+#from torchvision import models, transforms
+#from model import predict #これは、model.pyのこと
 import webbrowser
 
 
 
 
-
-
-
-# https://github.com/yukinaga/ai_webapp/tree/main
-# ---------- スライダー ----------
-#st.title("st.slider()")
-#x = st.slider("xの値")
-#st.write(str(x) + "の2乗は" + str(x**2))
-
-# ---------- ボタン ----------
-#st.title("st.button()")
-#if st.button("Morning?"):
-#    st.write("Good morinig!")
-#else:
-#    st.write("Helllo!")
-
-# ---------- テキスト入力 ----------
-#st.title("st.text_input()")
-#st.text_input("お住まいの国", key="country")
-#st.session_state.country  # keyでアクセス
-
-# ---------- チェックボックス ----------
-#st.title("st.checkbox()")
-#is_agree = st.checkbox("同意しますか？")
-#if is_agree:
-#    st.write("了解です！")
-#else:
-#    st.write("残念です！")
-
-# ---------- セレクトボックス ----------
-#st.title("st.selectbox()")
-#df_select = pd.DataFrame({
-#    "col1": [11, 12, 13, 14],
-#    "col2": [111, 112, 113, 114]
-#    })
-#selected = st.selectbox(
-#    "どの番号を選びますか？",
-#     df_select["col2"])
-#st.write("あなたは" + str(selected) + "番を選びました！")
-
-# ---------- サイドバー ----------
-#st.title("st.sidebar")
-
-#y = st.sidebar.slider("yの値")
-#st.write(str(y) + "の2倍は" + str(y*2))
-
-#df_side = pd.DataFrame({
-#    "animal": ["犬", "猫", "兎", "象", "蛙"],
-#    "color": ["赤", "青", "黄", "白", "黒"]
-#    })
-#selected_side = st.sidebar.selectbox(
-#    "どの動物を選びますか？",
-#     df_side["animal"])
-#st.write("あなたは" + str(selected_side) + "を選びました！")
-
-
-
-
-st.set_option("deprecation.showfileUploaderEncoding", False)
-
-
 #st.title('つくるちゃん')
 #st.caption('ものづくりを学ぼう')
-st.sidebar.title("つくるちゃんアプリ")
+st.sidebar.title("つくるchanのＷＥＢアプリ")
 image = Image.open('TSUKURU.png')
 #st.image(image,width=150)
 st.sidebar.image(image,width=300)
 
 st.sidebar.write("●私の名前は「つくる」です。\nあなたがアップロードする道具や工具の画像を見分けて、\
                  使い方などを説明します。")
-st.sidebar.write("")
+st.sidebar.write("実験中なので正しく動作しません。")
 
-global img_source
-img_source = st.sidebar.radio("画像のアップロード方法を選んでね。",
-                              ("画像ファイルをアップロード","カメラ撮影でアップロード"))
-if img_source == "画像ファイルをアップロード":
-    img_file = st.sidebar.file_uploader("下の枠内に画像ファイルをドラッグ＆ドロップするか、ボタンを押して画像ファイルを選択してね。", type=["png", "jpg","jpeg"])
-elif img_source == "カメラ撮影でアップロード":
-    img_file = st.camera_input("カメラ撮影でアップロード")
-   
 
 st.sidebar.write(" ")
 st.sidebar.write(" ")
@@ -113,58 +39,3 @@ st.sidebar.write("バナナ高等学校 工業科、総合ものづくりコー�
                  ちなみに、同級生の「白根くん」は、ただのお友達。")
 image = Image.open('SIRANE.png')
 st.sidebar.image(image,width=150,caption="白根くん")
-
-if img_file is not None:
-    with st.spinner("推定中..."):
-        img = Image.open(img_file)
-        if img_source=="画像ファイルをアップロード":
-            st.image(img, caption="アップロードされた画像", width=480)
-            st.write("")
-
-        # 予測
-        results = predict(img)
-
-        # 結果の表示
-        #st.subheader("判定結果")        
-        n_top = 1  # 確率が高い順に5位まで返す
-        for result in results[:n_top]:
-            #st.write(str(round(result[1]*100, 2)) + "%の確率で" + result[0] + "だよね？")
-            st.subheader("これって、"+result[0]+"？だよねぇ")
-            st.write(str(round(100-result[1]*100,2)) + "％まちがってるかも…てへぺろ")            
-            
-        # ---------- ボタン ----------
-        #st.subheader("下のボタンで説明をはじめるよ")
-
-        
-        #if st.button("新しいタブで説明を見る"):
-            #st.write("Good morinig!")
-        #    webbrowser.open_new_tab('https://hibiki-press.tech/python/webbrowser_module/1884')
-        
-        url = "https://tsukuru-chan.github.io/test/"
-        st.subheader(result[0]+"の説明をしますか？ [はい](%s)" % url)
-        st.write("（新しいタブが開かれます。）")
-        #st.markdown("check out this [link](%s)" % url)
-
-
-
-        # 円グラフの表示
-        #pie_labels = [result[0] for result in results[:n_top]]
-        #pie_labels.append("others")
-        #pie_probs = [result[1] for result in results[:n_top]]
-        #pie_probs.append(sum([result[1] for result in results[n_top:]]))
-        #fig, ax = plt.subplots()
-        #wedgeprops={"width":0.3, "edgecolor":"white"}
-        #textprops = {"fontsize":6}
-        #ax.pie(pie_probs, labels=pie_labels, counterclock=False, startangle=90,
-        #       textprops=textprops, autopct="%.2f", wedgeprops=wedgeprops)  # 円グラフ
-        #st.pyplot(fig)
-
-
-# StreamlitでWebアプリ開発！インストールからデプロイまで徹底解説
-# https://camp.trainocate.co.jp/magazine/streamlit-web/
-
-# Resnetを転移学習
-# http://pchun.work/resnet%E3%82%92fine-tuning%E3%81%97%E3%81%A6%E8%87%AA%E5%88%86%E3%81%8C%E7%94%A8%E6%84%8F%E3%81%97%E3%81%9F%E7%94%BB%E5%83%8F%E3%82%92%E5%AD%A6%E7%BF%92%E3%81%95%E3%81%9B%E3%82%8B/
-
-# Udemy？のオンライン講座の資料？
-# https://github.com/yukinaga/ai_webapp/blob/main/section_3/01_image_recognition.ipynb
