@@ -14,13 +14,14 @@ import webbrowser
 #st.title('つくるちゃん')
 #st.caption('ものづくりを学ぼう')
 st.sidebar.title("つくるchanのＷＥＢアプリ")
+st.sidebar.write("実験中なので正しく動作しません。")
 image = Image.open('TSUKURU.png')
 #st.image(image,width=150)
 st.sidebar.image(image,width=300)
 
 st.sidebar.write("●私の名前は「つくる」です。\nあなたがアップロードする道具や工具の画像を見分けて、\
                  使い方などを説明します。")
-st.sidebar.write("実験中なので正しく動作しません。")
+
 
 
 st.sidebar.write(" ")
