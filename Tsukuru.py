@@ -13,7 +13,7 @@ import webbrowser
 
 #st.title('つくるちゃん')
 #st.caption('ものづくりを学ぼう')
-st.sidebar.title("つくるchanのＷＥＢアプリ")
+st.sidebar.title("「つくる」のＷＥＢアプリ")
 st.sidebar.write("実験中なので正しく動作しません。")
 image = Image.open('TSUKURU.png')
 #st.image(image,width=150)
