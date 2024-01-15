@@ -1,28 +1,34 @@
-#import io
+
 import streamlit as st
 from PIL import Image
-
-
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 from PIL import Image
-#from torchvision import models, transforms
-#from model import predict #これは、model.pyのこと
+from torchvision import models, transforms
+from model import predict #これは、model.pyのこと
 import webbrowser
 
 
+st.set_option("deprecation.showfileUploaderEncoding", False)
 
-
-#st.title('つくるちゃん')
-#st.caption('ものづくりを学ぼう')
-st.sidebar.title("「つくる」のＷＥＢアプリ")
-st.sidebar.write("実験中なので正しく動作しません。")
+st.sidebar.title("つくるちゃんアプリ")
 image = Image.open('TSUKURU.png')
-#st.image(image,width=150)
+
 st.sidebar.image(image,width=300)
 
 st.sidebar.write("●私の名前は「つくる」です。\nあなたがアップロードする道具や工具の画像を見分けて、\
                  使い方などを説明します。")
+st.sidebar.write("")
 
-
+global img_source
+img_source = st.sidebar.radio("画像のアップロード方法を選んでね。",
+                              ("画像ファイルをアップロード","カメラ撮影でアップロード"))
+if img_source == "画像ファイルをアップロード":
+    img_file = st.sidebar.file_uploader("下の枠内に画像ファイルをドラッグ＆ドロップするか、ボタンを押して画像ファイルを選択してね。", type=["png", "jpg","jpeg"])
+elif img_source == "カメラ撮影でアップロード":
+    img_file = st.camera_input("カメラ撮影でアップロード")
+   
 
 st.sidebar.write(" ")
 st.sidebar.write(" ")
@@ -40,3 +46,30 @@ st.sidebar.write("バナナ高等学校 工業科、総合ものづくりコー�
                  ちなみに、同級生の「白根くん」は、ただのお友達。")
 image = Image.open('SIRANE.png')
 st.sidebar.image(image,width=150,caption="白根くん")
+
+if img_file is not None:
+    with st.spinner("推定中..."):
+        img = Image.open(img_file)
+        if img_source=="画像ファイルをアップロード":
+            st.image(img, caption="アップロードされた画像", width=480)
+            st.write("")
+
+        # 予測
+        results = predict(img)
+
+        # 結果の表示
+        #st.subheader("判定結果")        
+        n_top = 1  # 確率が高い順に5位まで返す
+        for result in results[:n_top]:
+            #st.write(str(round(result[1]*100, 2)) + "%の確率で" + result[0] + "だよね？")
+            st.subheader("これって、"+result[0]+"？だよねぇ")
+            st.write(str(round(100-result[1]*100,2)) + "％まちがってるかも…てへぺろ")            
+            
+       
+        
+        url = "https://tsukuru-chan.github.io/test/"
+        st.subheader(result[0]+"の説明をしますか？ [はい](%s)" % url)
+        st.write("（新しいタブが開かれます。）")
+        #st.markdown("check out this [link](%s)" % url)
+
+
