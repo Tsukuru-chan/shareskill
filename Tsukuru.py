@@ -18,7 +18,7 @@ image = Image.open('TSUKURU.png')
 st.sidebar.image(image,width=300)
 
 st.sidebar.write("●私の名前は「つくる」です。\nあなたがアップロードする道具や工具の画像を見分けて、\
-                 使い方などを説明します。")
+                 使い方などを説明します。（テスト運用なので動作しません。）")
 st.sidebar.write("")
 
 global img_source
