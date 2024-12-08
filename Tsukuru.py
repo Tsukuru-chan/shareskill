@@ -8,7 +8,7 @@ from PIL import Image
 from torchvision import models, transforms
 from model import predict #これは、model.pyのこと
 import webbrowser
-
+#  
 
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
